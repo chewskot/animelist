@@ -14,6 +14,6 @@ namespace WindowsFormsApp1
         public int PocetEpizod { get; set; }
         public double Hodnoceni { get; set; }
         public List<Episode> Epizody { get; set; }
-        public Genre Zanr { get; set; }  // Reference na entitu Zanr
+        public List<Genre> Zanry { get; set; }  // Seznam žánrů
     }
 }
