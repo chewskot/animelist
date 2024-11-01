@@ -30,13 +30,13 @@
         {
             this.animeBtn = new System.Windows.Forms.Button();
             this.btnShowAnime = new System.Windows.Forms.Button();
-            this.lstView = new System.Windows.Forms.ListBox();
             this.btnAddGenre = new System.Windows.Forms.Button();
             this.btnShowGenre = new System.Windows.Forms.Button();
             this.btnRemoveAnime = new System.Windows.Forms.Button();
             this.btnEditAnime = new System.Windows.Forms.Button();
             this.btnEditGenre = new System.Windows.Forms.Button();
             this.btnEditEpisode = new System.Windows.Forms.Button();
+            this.lstView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // animeBtn
@@ -60,18 +60,6 @@
             this.btnShowAnime.Text = "Ukaz Anime";
             this.btnShowAnime.UseVisualStyleBackColor = true;
             this.btnShowAnime.Click += new System.EventHandler(this.btnShowAnime_Click);
-            // 
-            // lstView
-            // 
-            this.lstView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lstView.FormattingEnabled = true;
-            this.lstView.ItemHeight = 20;
-            this.lstView.Location = new System.Drawing.Point(1, -1);
-            this.lstView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lstView.Name = "lstView";
-            this.lstView.Size = new System.Drawing.Size(686, 644);
-            this.lstView.TabIndex = 3;
             // 
             // btnAddGenre
             // 
@@ -139,18 +127,28 @@
             this.btnEditEpisode.UseVisualStyleBackColor = true;
             this.btnEditEpisode.Click += new System.EventHandler(this.btnEditEpisode_Click);
             // 
+            // lstView
+            // 
+            this.lstView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lstView.HideSelection = false;
+            this.lstView.Location = new System.Drawing.Point(0, 0);
+            this.lstView.Name = "lstView";
+            this.lstView.Size = new System.Drawing.Size(656, 651);
+            this.lstView.TabIndex = 10;
+            this.lstView.UseCompatibleStateImageBehavior = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 651);
+            this.Controls.Add(this.lstView);
             this.Controls.Add(this.btnEditEpisode);
             this.Controls.Add(this.btnEditGenre);
             this.Controls.Add(this.btnEditAnime);
             this.Controls.Add(this.btnRemoveAnime);
             this.Controls.Add(this.btnShowGenre);
             this.Controls.Add(this.btnAddGenre);
-            this.Controls.Add(this.lstView);
             this.Controls.Add(this.btnShowAnime);
             this.Controls.Add(this.animeBtn);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -165,13 +163,13 @@
 
         private System.Windows.Forms.Button animeBtn;
         private System.Windows.Forms.Button btnShowAnime;
-        private System.Windows.Forms.ListBox lstView;
         private System.Windows.Forms.Button btnAddGenre;
         private System.Windows.Forms.Button btnShowGenre;
         private System.Windows.Forms.Button btnRemoveAnime;
         private System.Windows.Forms.Button btnEditAnime;
         private System.Windows.Forms.Button btnEditGenre;
         private System.Windows.Forms.Button btnEditEpisode;
+        private System.Windows.Forms.ListView lstView;
     }
 }
 

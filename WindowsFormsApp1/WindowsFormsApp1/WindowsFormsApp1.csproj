@@ -67,6 +67,12 @@
       <DependentUpon>EditEpisodesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Episode.cs" />
+    <Compile Include="EpisodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EpisodeForm.Designer.cs">
+      <DependentUpon>EpisodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditEpisodesForm.resx">
       <DependentUpon>EditEpisodesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EpisodeForm.resx">
+      <DependentUpon>EpisodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

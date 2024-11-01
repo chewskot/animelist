@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -15,11 +16,6 @@ namespace WindowsFormsApp1
         public EditEpisodesForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
         private Anime anime;
         private AnimeListDatabase animeListDatabase;
@@ -35,35 +31,50 @@ namespace WindowsFormsApp1
 
         private void LoadEpisodes()
         {
-            //listViewEpisodes.Items.Clear();
+            lstViewEpisodes.Items.Clear();
 
-            //foreach (var episode in anime.Epizody)
-            //{
-            //    var item = new ListViewItem(new[] { episode.CisloEpizody.ToString(), episode.Nazev, episode.Delka.ToString(), episode.DatumVydani.ToShortDateString() });
-            //    item.Tag = episode; // Uložíme epizodu do Tag pro úpravy
-            //    listViewEpisodes.Items.Add(item);
-            //}
+            // Nastavíme View na List, aby byly položky v jednotlivých řádcích
+            lstViewEpisodes.View = View.List;
+
+            foreach (var episode in anime.Epizody)
+            {
+                // Vytvoříme řádek textu obsahující všechny potřebné informace o epizodě
+                string episodeInfo = $"{episode.Nazev} - Číslo: {episode.CisloEpizody}, Délka: {episode.Delka} min";
+
+                // Vytvoříme položku ListView s těmito informacemi
+                var item = new ListViewItem(episodeInfo)
+                {
+                    Tag = episode // Uložíme epizodu do Tag pro pozdější úpravy
+                };
+
+                lstViewEpisodes.Items.Add(item);
+            }
         }
 
-        private void btnEditSelectedEpisode_Click(object sender, EventArgs e)
+
+        private void btnEditEpisode_Click(object sender, EventArgs e)
         {
-            //if (listViewEpisodes.SelectedItems.Count > 0)
-            //{
-            //    var selectedItem = listViewEpisodes.SelectedItems[0];
-            //    if (selectedItem.Tag is Episode selectedEpisode)
-            //    {
-            //        // Otevřeme dialog pro úpravu epizody
-            //        var editEpisodeForm = new EditEpisodeForm(selectedEpisode, animeListDatabase);
-            //        if (editEpisodeForm.ShowDialog() == DialogResult.OK)
-            //        {
-            //            LoadEpisodes(); // Aktualizujeme seznam epizod po úpravě
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vyberte epizodu k úpravě.");
-            //}
+            if (lstViewEpisodes.SelectedItems.Count > 0)
+            {
+                var selectedItem = lstViewEpisodes.SelectedItems[0];
+                if (selectedItem.Tag is Episode selectedEpisode)
+                {
+                    var editEpisodeForm = new EpisodeForm(selectedEpisode, animeListDatabase);
+                    if (editEpisodeForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadEpisodes(); // Obnoví seznam epizod po úpravě
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte epizodu k úpravě.");
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -53,21 +53,39 @@ namespace WindowsFormsApp1
         }
         private void ShowAnimeList()
         {
-            lstView.Items.Clear();
+            lstView.Items.Clear(); // Vymažeme existující položky
+            lstView.View = View.Details; // Zobrazíme jako tabulku
+
+            // Vymažeme existující sloupce, abychom předešli jejich duplikaci
+            lstView.Columns.Clear();
+
+            // Nastavíme konkrétní šířky pro jednotlivé sloupce, aby měly více prostoru
+            lstView.Columns.Add("Název", 100, HorizontalAlignment.Left);
+            lstView.Columns.Add("Počet epizod", 100, HorizontalAlignment.Left);
+            lstView.Columns.Add("Hodnocení", 100, HorizontalAlignment.Left);
+            lstView.Columns.Add("Datum vydání", 150, HorizontalAlignment.Left);
+
             var animeList = animeListDatabase.GetAnimeCollection().FindAll();
 
             foreach (var anime in animeList)
             {
-                ListViewItem item = new ListViewItem($"{anime.Nazev} ({anime.PocetEpizod} epizod, hodnocení {anime.Hodnoceni}, datum vydani {anime.DatumVydani})");
-                item.Tag = anime; // Uložíme celý objekt anime do Tag
+                var item = new ListViewItem(anime.Nazev); // Hlavní text (první sloupec)
+                item.SubItems.Add(anime.PocetEpizod.ToString()); // Druhý sloupec
+                item.SubItems.Add(anime.Hodnoceni.ToString()); // Třetí sloupec
+                item.SubItems.Add(anime.DatumVydani.ToString("dd/MM/yyyy HH:mm:ss")); // Čtvrtý sloupec
+
+                item.Tag = anime; // Uložíme objekt anime do Tag pro další použití (např. úpravy)
                 lstView.Items.Add(item);
             }
 
-            lstView.Tag = "Anime"; // Označíme typ aktuálního obsahu
-            btnEditAnime.Visible = true;  // Zobrazíme tlačítko pro úpravu anime
-            btnEditGenre.Visible = false; // Skryjeme tlačítko pro úpravu žánrů
-        }
+            lstView.Tag = "Anime";
+            btnEditAnime.Visible = true;
+            btnEditGenre.Visible = false;
 
+            // Automaticky nastavíme šířku posledního sloupce, aby se roztáhl a vyplnil zbytek místa
+            lstView.Columns[lstView.Columns.Count - 1].Width = -2;
+        }
+    
         private void ShowGenreList()
         {
             lstView.Items.Clear();
@@ -162,8 +180,26 @@ namespace WindowsFormsApp1
 
         private void btnEditEpisode_Click(object sender, EventArgs e)
         {
+            if (lstView.SelectedItems.Count > 0)
+            {
+                var selectedItem = (ListViewItem)lstView.SelectedItems[0];
 
+                if (selectedItem.Tag is Anime selectedAnime)
+                {
+                    // Načteme epizody z databáze pro vybrané anime
+                    var animeWithEpisodes = animeListDatabase.GetAnimeWithEpisodes(selectedAnime.Id);
+
+                    // Otevřeme formulář pro zobrazení epizod a přidáme animeListDatabase
+                    var editEpisodesForm = new EditEpisodesForm(animeWithEpisodes, animeListDatabase);
+                    editEpisodesForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Vyberte anime k zobrazení epizod.");
+                }
+            }
         }
+
     }
 }
     

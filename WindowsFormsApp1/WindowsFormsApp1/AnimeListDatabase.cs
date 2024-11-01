@@ -69,11 +69,36 @@ namespace WindowsFormsApp1
             var genreCollection = GetGenreCollection();
             genreCollection.Delete(id);
         }
+        public Anime GetAnimeWithEpisodes(int animeId)
+        {
+            var animeCollection = GetAnimeCollection();
+            var episodeCollection = GetEpisodeCollection();
+
+            var anime = animeCollection.FindById(animeId);
+            if (anime != null)
+            {
+                anime.Epizody = episodeCollection.Find(e => e.Anime.Id == animeId).ToList(); // Načte epizody
+            }
+
+            return anime;
+        }
+
         // Metoda pro přidání žánru
         public void AddGenre(Genre genre)
         {
             var genreCollection = GetGenreCollection();
             genreCollection.Insert(genre); // Vložení nového žánru, ID se generuje automaticky
         }
+        public void AddEpisode(Episode episode)
+        {
+            var episodeCollection = GetEpisodeCollection();
+            episodeCollection.Insert(episode); // Vloží epizodu do kolekce "episodes"
+        }
+        public void UpdateEpisode(Episode episode)
+        {
+            var episodeCollection = GetEpisodeCollection();
+            episodeCollection.Update(episode); // Aktualizuje existující epizodu v databázi
+        }
+
     }
 }

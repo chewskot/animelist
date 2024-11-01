@@ -79,31 +79,40 @@ namespace WindowsFormsApp1
 
         private void btnSaveAnime_Click(object sender, EventArgs e)
         {
-            if (isEditMode && editingAnime != null)
+            string nazev = txtName.Text;
+            DateTime datumVydani = dateTimePicker1.Value;
+            int pocetEpizod = (int)numberOfEpisodesNumeric.Value;
+            double hodnoceni = (double)AddAnimeNumericRating.Value;
+
+            // Vytvoříme nový objekt anime
+            var newAnime = new Anime
             {
-                // Úprava existujícího anime
-                editingAnime.Nazev = txtName.Text;
-                editingAnime.DatumVydani = dateTimePicker1.Value;
-                editingAnime.PocetEpizod = (int)numberOfEpisodesNumeric.Value;
-                editingAnime.Hodnoceni = (double)AddAnimeNumericRating.Value;
-                editingAnime.Zanry = selectedGenreIds.Select(id => animeListDatabase.GetGenreCollection().FindById(id)).ToList();
-                animeListDatabase.UpdateAnime(editingAnime); // Uloží změny
-            }
-            else
+                Nazev = nazev,
+                DatumVydani = datumVydani,
+                PocetEpizod = pocetEpizod,
+                Hodnoceni = hodnoceni
+            };
+
+            // Uložíme anime do databáze a získáme jeho ID
+            animeListDatabase.AddAnime(newAnime);
+
+            // Vytvoříme epizody a přiřadíme každé číslo a datum vydání
+            for (int i = 0; i < pocetEpizod; i++)
             {
-                // Přidání nového anime
-                var newAnime = new Anime
+                var episode = new Episode
                 {
-                    Nazev = txtName.Text,
-                    DatumVydani = dateTimePicker1.Value,
-                    PocetEpizod = (int)numberOfEpisodesNumeric.Value,
-                    Hodnoceni = (double)AddAnimeNumericRating.Value,
-                    Zanry = selectedGenreIds.Select(id => animeListDatabase.GetGenreCollection().FindById(id)).ToList()
+                    Nazev = $"Epizoda {i + 1}",
+                    Delka = 23,
+                    CisloEpizody = i + 1,
+                    DatumVydani = datumVydani.AddDays(i * 7), // Datum vydání se zvyšuje o týden
+                    Anime = newAnime // Přiřazení reference na anime
                 };
-                animeListDatabase.AddAnime(newAnime);
+
+                // Uložíme epizodu do databáze
+                animeListDatabase.AddEpisode(episode);
             }
 
-            Close(); // Zavření formuláře
+            this.Close(); // Zavře formulář po uložení
         }
 
         private void btnCancelSavingAnime_Click(object sender, EventArgs e)
