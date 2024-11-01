@@ -29,3 +29,5 @@ C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debu
 C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddAnimeForm.resources
 C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainForm.resources
+C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.AddGenreForm.resources
+C:\Users\patri\Source\Repos\animelist\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.EditEpisodesForm.resources

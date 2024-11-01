@@ -3,23 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\anime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\anime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -27,12 +11,48 @@
       "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\episode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\anime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\anime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\animelistdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\animelistdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\editepisodesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\editepisodesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\editepisodesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\editepisodesform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addanimeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|c:\\users\\patri\\source\\repos\\animelist\\windowsformsapp1\\windowsformsapp1\\episode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\episode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\addgenreform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addgenreform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\addgenreform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\addgenreform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\windowsformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90A30D59-6BF2-4E1B-874E-6549B0EEFF30}|WindowsFormsApp1\\WindowsFormsApp1.csproj|solutionrelative:windowsformsapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -45,47 +65,8 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddAnimeForm.cs",
-              "DocumentMoniker": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddAnimeForm.cs",
-              "ToolTip": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
-              "RelativeToolTip": "WindowsFormsApp1\\AddAnimeForm.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAUwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T15:45:14.715Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddAnimeForm.cs [N\u00E1vrh]",
-              "DocumentMoniker": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddAnimeForm.cs",
-              "ToolTip": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs [N\u00E1vrh]",
-              "RelativeToolTip": "WindowsFormsApp1\\AddAnimeForm.cs [N\u00E1vrh]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T15:43:45.52Z",
-              "EditorCaption": " [N\u00E1vrh]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\MainForm.cs",
-              "ToolTip": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
-              "RelativeToolTip": "WindowsFormsApp1\\MainForm.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAcwBoAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T15:48:54.833Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -95,52 +76,102 @@
               "RelativeDocumentMoniker": "WindowsFormsApp1\\Anime.cs",
               "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Anime.cs",
               "RelativeToolTip": "WindowsFormsApp1\\Anime.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAYwA8AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAwBAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T12:13:40.297Z",
+              "WhenOpened": "2024-10-29T20:26:38.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\MainForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\MainForm.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAwCcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:11:32.246Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Genre.cs",
-              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Genre.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\Genre.cs",
-              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Genre.cs",
-              "RelativeToolTip": "WindowsFormsApp1\\Genre.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Title": "AddAnimeForm.cs [N\u00E1vrh]",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddAnimeForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs [N\u00E1vrh]",
+              "RelativeToolTip": "WindowsFormsApp1\\AddAnimeForm.cs [N\u00E1vrh]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T16:13:12.768Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainForm.cs [N\u00E1vrh]",
-              "DocumentMoniker": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\MainForm.cs",
-              "ToolTip": "C:\\Users\\patri\\Source\\Repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs [N\u00E1vrh]",
-              "RelativeToolTip": "WindowsFormsApp1\\MainForm.cs [N\u00E1vrh]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-29T15:48:38.757Z",
+              "WhenOpened": "2024-10-29T22:51:46.563Z",
               "EditorCaption": " [N\u00E1vrh]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Program.cs",
-              "RelativeDocumentMoniker": "WindowsFormsApp1\\Program.cs",
-              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Program.cs",
-              "RelativeToolTip": "WindowsFormsApp1\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "MainForm.cs [N\u00E1vrh]",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\MainForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\MainForm.cs [N\u00E1vrh]",
+              "RelativeToolTip": "WindowsFormsApp1\\MainForm.cs [N\u00E1vrh]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T12:18:14.996Z",
+              "WhenOpened": "2024-10-29T19:11:08.335Z",
+              "EditorCaption": " [N\u00E1vrh]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AnimeListDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AnimeListDatabase.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\AnimeListDatabase.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AnimeListDatabase.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\AnimeListDatabase.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:17:19.8Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "AddAnimeForm.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddAnimeForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddAnimeForm.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\AddAnimeForm.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAlwGAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:20:16.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EditEpisodesForm.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\EditEpisodesForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\EditEpisodesForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\EditEpisodesForm.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\EditEpisodesForm.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAA3wDYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T11:35:29.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EditEpisodesForm.cs [N\u00E1vrh]",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\EditEpisodesForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\EditEpisodesForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\EditEpisodesForm.cs [N\u00E1vrh]",
+              "RelativeToolTip": "WindowsFormsApp1\\EditEpisodesForm.cs [N\u00E1vrh]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-01T11:35:09.351Z",
+              "EditorCaption": " [N\u00E1vrh]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Episode.cs",
               "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Episode.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\Episode.cs",
@@ -148,8 +179,58 @@
               "RelativeToolTip": "WindowsFormsApp1\\Episode.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T12:14:04.169Z",
+              "WhenOpened": "2024-11-01T11:30:18.659Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Genre.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\Genre.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Genre.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\Genre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:16:40.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddGenreForm.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddGenreForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddGenreForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddGenreForm.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\AddGenreForm.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwCcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:16:35.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AddGenreForm.cs [N\u00E1vrh]",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddGenreForm.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\AddGenreForm.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\AddGenreForm.cs [N\u00E1vrh]",
+              "RelativeToolTip": "WindowsFormsApp1\\AddGenreForm.cs [N\u00E1vrh]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:04:13.843Z",
+              "EditorCaption": " [N\u00E1vrh]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Program.cs",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\Program.cs",
+              "ToolTip": "C:\\Users\\patri\\source\\repos\\animelist\\WindowsFormsApp1\\WindowsFormsApp1\\Program.cs",
+              "RelativeToolTip": "WindowsFormsApp1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T19:10:59.612Z"
             }
           ]
         }

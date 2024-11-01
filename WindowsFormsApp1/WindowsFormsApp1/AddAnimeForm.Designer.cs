@@ -148,6 +148,7 @@
             this.btnCancelSavingAnime.TabIndex = 25;
             this.btnCancelSavingAnime.Text = "Zruš Přidávání";
             this.btnCancelSavingAnime.UseVisualStyleBackColor = true;
+            this.btnCancelSavingAnime.Click += new System.EventHandler(this.btnCancelSavingAnime_Click);
             // 
             // AddAnimeNumericRating
             // 

@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="Anime.cs" />
     <Compile Include="AnimeListDatabase.cs" />
+    <Compile Include="EditEpisodesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditEpisodesForm.Designer.cs">
+      <DependentUpon>EditEpisodesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Episode.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -78,6 +84,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddAnimeForm.resx">
       <DependentUpon>AddAnimeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddGenreForm.resx">
+      <DependentUpon>AddGenreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditEpisodesForm.resx">
+      <DependentUpon>EditEpisodesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

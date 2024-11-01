@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         public int Id { get; set; }
         public string Nazev { get; set; }
         public int CisloEpizody { get; set; }
-        public TimeSpan Delka { get; set; }
+        public int Delka { get; set; }
         public DateTime DatumVydani { get; set; }
         public Anime Anime { get; set; }  // Reference na Anime
     }

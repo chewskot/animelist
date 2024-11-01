@@ -57,6 +57,23 @@ namespace WindowsFormsApp1
             var animeCollection = GetAnimeCollection();
             animeCollection.Delete(id);
         }
+        public void UpdateGenre(Genre genre)
+        {
+            var genreCollection = GetGenreCollection();
+            genreCollection.Update(genre); // Aktualizuje existující záznam žánru
+        }
 
+        // Přidání metody pro odstranění žánru
+        public void DeleteGenre(int id)
+        {
+            var genreCollection = GetGenreCollection();
+            genreCollection.Delete(id);
+        }
+        // Metoda pro přidání žánru
+        public void AddGenre(Genre genre)
+        {
+            var genreCollection = GetGenreCollection();
+            genreCollection.Insert(genre); // Vložení nového žánru, ID se generuje automaticky
+        }
     }
 }

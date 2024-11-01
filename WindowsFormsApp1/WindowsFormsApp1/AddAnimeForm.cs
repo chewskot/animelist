@@ -14,16 +14,40 @@ namespace WindowsFormsApp1
     {
         private AnimeListDatabase animeListDatabase;
         private List<int> selectedGenreIds = new List<int>(); // Pro uchování vybraných žánrů
-
+        private Anime editingAnime;
+        private bool isEditMode = false;
         public AddAnimeForm(AnimeListDatabase animeListDatabase)
         {
             InitializeComponent();
-            animeListDatabase = animeListDatabase;
+            this.animeListDatabase = animeListDatabase;
             LoadGenres();
         }
+        public AddAnimeForm(AnimeListDatabase animeListDatabase, Anime animeToEdit)
+        {
+            InitializeComponent();
+            this.animeListDatabase = animeListDatabase;
+            this.editingAnime = animeToEdit; // Přiřazení anime k úpravám
+            this.isEditMode = true; // Nastavení režimu úprav
+
+            LoadGenres();
+           FillAnimeDetails(); // Volání metody pro předvyplnění údajů
+        }
+
         public AddAnimeForm()
         {
             InitializeComponent();
+        }
+        private void FillAnimeDetails()
+        {
+            if (editingAnime != null)
+            {
+                txtName.Text = editingAnime.Nazev;
+                dateTimePicker1.Value = editingAnime.DatumVydani > dateTimePicker1.MinDate ? editingAnime.DatumVydani : DateTime.Today;
+                numberOfEpisodesNumeric.Value = editingAnime.PocetEpizod;
+                AddAnimeNumericRating.Value = (decimal)editingAnime.Hodnoceni;
+                selectedGenreIds = editingAnime.Zanry.Select(z => z.Id).ToList();
+                UpdateAddedGenresLabel();
+            }
         }
 
         private void btnAddGenre_Click(object sender, EventArgs e)
@@ -55,23 +79,36 @@ namespace WindowsFormsApp1
 
         private void btnSaveAnime_Click(object sender, EventArgs e)
         {
-            // Získání dat z formuláře
-            string animeName = txtName.Text; // Předpokládané TextBox pro název anime
-            int numberOfEpisodes = (int)numberOfEpisodesNumeric.Value; // Předpokládaný NumericUpDown pro počet epizod
-            double rating = (double)AddAnimeNumericRating.Value; // Předpokládaný NumericUpDown pro hodnocení
-
-            // Vytvoření nového anime objektu
-            var newAnime = new Anime
+            if (isEditMode && editingAnime != null)
             {
-                Nazev = animeName,
-                PocetEpizod = numberOfEpisodes,
-                Hodnoceni = rating,
-                Zanry = selectedGenreIds // Přidání vybraných žánrů
-            };
+                // Úprava existujícího anime
+                editingAnime.Nazev = txtName.Text;
+                editingAnime.DatumVydani = dateTimePicker1.Value;
+                editingAnime.PocetEpizod = (int)numberOfEpisodesNumeric.Value;
+                editingAnime.Hodnoceni = (double)AddAnimeNumericRating.Value;
+                editingAnime.Zanry = selectedGenreIds.Select(id => animeListDatabase.GetGenreCollection().FindById(id)).ToList();
+                animeListDatabase.UpdateAnime(editingAnime); // Uloží změny
+            }
+            else
+            {
+                // Přidání nového anime
+                var newAnime = new Anime
+                {
+                    Nazev = txtName.Text,
+                    DatumVydani = dateTimePicker1.Value,
+                    PocetEpizod = (int)numberOfEpisodesNumeric.Value,
+                    Hodnoceni = (double)AddAnimeNumericRating.Value,
+                    Zanry = selectedGenreIds.Select(id => animeListDatabase.GetGenreCollection().FindById(id)).ToList()
+                };
+                animeListDatabase.AddAnime(newAnime);
+            }
 
-            // Uložení do databáze
-            animeListDatabase.AddAnime(newAnime); // Přidejte metodu pro uložení anime do databáze
-            Close(); // Zavření formuláře po úspěšném uložení
+            Close(); // Zavření formuláře
+        }
+
+        private void btnCancelSavingAnime_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
