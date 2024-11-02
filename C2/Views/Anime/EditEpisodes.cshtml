@@ -1,0 +1,40 @@
+﻿@model IEnumerable<C2.Models.Episode>
+
+<h2>Edit Episodes for @ViewBag.AnimeTitle</h2>
+
+<form asp-action="SaveEpisodeChanges" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Episode Number</th>
+                <th>Title</th>
+                <th>Release Date</th>
+                <th>Duration (minutes)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Model.ElementAt(i).Number
+                        <input type="hidden" name="Episodes[@i].Id" value="@Model.ElementAt(i).Id" />
+                        <input type="hidden" name="Episodes[@i].Number" value="@Model.ElementAt(i).Number" />
+                    </td>
+                    <td>
+                        <input type="text" name="Episodes[@i].Title" value="@Model.ElementAt(i).Title" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="date" name="Episodes[@i].ReleaseDate" value="@Model.ElementAt(i).ReleaseDate.ToString("yyyy-MM-dd")" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="number" name="Episodes[@i].Duration" value="@Model.ElementAt(i).Duration" class="form-control" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to Anime List</a>
+</form>

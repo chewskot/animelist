@@ -1,0 +1,83 @@
+﻿@model C2.Models.Anime
+@{
+    var genres = ViewBag.Genres as List<C2.Models.Genre> ?? new List<C2.Models.Genre>();
+}
+
+<h2>Edit Anime</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div>
+        <label>Release Date</label>
+        <input asp-for="ReleaseDate" type="date" class="form-control" />
+    </div>
+
+    <div>
+        <label>Rating</label>
+        <input asp-for="Rating" type="number" min="1" max="10" class="form-control" />
+    </div>
+
+    <div>
+        <label>Episode Count</label>
+        <input asp-for="EpisodeCount" type="number" min="1" max="100000" class="form-control" />
+    </div>
+
+    <div>
+        <label>Genres</label>
+        <div class="d-flex">
+            <select id="availableGenres" class="form-control" multiple style="height: 150px;">
+                @foreach (var genre in genres)
+                {
+                    if (!Model.GenreIds.Contains(genre.Id))
+                    {
+                        <option value="@genre.Id">@genre.Name</option>
+                    }
+                }
+            </select>
+            <div class="d-flex flex-column mx-3">
+                <button type="button" class="btn btn-primary mb-2" onclick="addGenre()">Add &gt;&gt;</button>
+                <button type="button" class="btn btn-danger" onclick="removeGenre()">Remove &lt;&lt;</button>
+            </div>
+            <select id="selectedGenres" name="GenreIds" class="form-control" multiple style="height: 150px;">
+                @foreach (var genre in genres)
+                {
+                    if (Model.GenreIds.Contains(genre.Id))
+                    {
+                        <option value="@genre.Id">@genre.Name</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <script>
+        function addGenre() {
+            var availableGenres = document.getElementById("availableGenres");
+            var selectedGenres = document.getElementById("selectedGenres");
+
+            Array.from(availableGenres.selectedOptions).forEach(option => {
+                selectedGenres.appendChild(option);
+            });
+        }
+
+        function removeGenre() {
+            var availableGenres = document.getElementById("availableGenres");
+            var selectedGenres = document.getElementById("selectedGenres");
+
+            Array.from(selectedGenres.selectedOptions).forEach(option => {
+                availableGenres.appendChild(option);
+            });
+        }
+    </script>
+}

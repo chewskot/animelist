@@ -1,0 +1,35 @@
+﻿@model IEnumerable<C2.Models.Anime>
+
+<h2>Anime List</h2>
+
+<!-- Tlačítko pro přidání nového anime -->
+<a asp-action="Create" class="btn btn-success mb-3">Add New Anime</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+            <th>Episode Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var anime in Model)
+        {
+            <tr>
+                <td>@anime.Title</td>
+                <td>@anime.ReleaseDate.ToString("dd/MM/yyyy")</td>
+                <td>@anime.Rating</td>
+                <td>@anime.EpisodeCount</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@anime.Id" class="btn btn-info">Details</a>
+                    <a asp-action="Edit" asp-route-id="@anime.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@anime.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="EditEpisodes" asp-route-id="@anime.Id" class="btn btn-primary">Edit Episodes</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

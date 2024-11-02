@@ -1,0 +1,14 @@
+﻿@model C2.Models.Anime
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Model.Title</h4>
+    <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+    <p>Rating: @Model.Rating</p>
+    <p>Episode Count: @Model.EpisodeCount</p>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>
