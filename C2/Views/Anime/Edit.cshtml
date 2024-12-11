@@ -79,5 +79,11 @@
                 availableGenres.appendChild(option);
             });
         }
+
+        // Zajistit, že všechny vybrané žánry jsou správně odeslány
+        document.querySelector("form").addEventListener("submit", function () {
+            var selectedGenres = document.getElementById("selectedGenres");
+            Array.from(selectedGenres.options).forEach(option => option.selected = true);
+        });
     </script>
 }

@@ -19,7 +19,8 @@ namespace C2.Controllers
         public IActionResult Index()
         {
             var animes = _context.Animes.FindAll().ToList();
-            var episodes = _context.Episodes.FindAll().ToList(); // Explicitně načteme všechny epizody
+            var episodes = _context.Episodes.FindAll().ToList();
+            var genres = _context.Genres.FindAll().ToList();
 
             // Počet anime
             int totalAnime = animes.Count;
@@ -32,6 +33,45 @@ namespace C2.Controllers
             int days = totalMinutes / 1440;
             int hours = (totalMinutes % 1440) / 60;
             int minutes = totalMinutes % 60;
+
+            // Průměrné hodnocení všech anime
+            double averageRating = totalAnime > 0
+                ? animes.Average(a => a.Rating)
+                : 0.0;
+
+            // Nejnovější přidané anime
+            var newestAnimeAdded = animes.OrderByDescending(a => a.Id).FirstOrDefault();
+            ViewBag.NewestAnimeAdded = newestAnimeAdded;
+
+            // Nejlépe hodnocené anime
+            var topRatedAnime = animes.OrderByDescending(a => a.Rating).FirstOrDefault();
+            ViewBag.TopRatedAnime = topRatedAnime;
+
+            // Nejlépe hodnocený žánr (průměrné hodnocení všech anime v daném žánru)
+            var genreRatings = animes
+                .SelectMany(a => a.Genres)
+                .GroupBy(g => g.Id)
+                .Select(g => new
+                {
+                    Genre = genres.First(genre => genre.Id == g.Key).Name,
+                    AverageRating = g.Average(a => animes.First(anime => anime.Genres.Any(genre => genre.Id == g.Key)).Rating)
+                })
+                .OrderByDescending(gr => gr.AverageRating)
+                .FirstOrDefault();
+            ViewBag.TopRatedGenre = genreRatings;
+
+            // Žánr s nejvíce anime
+            var mostPopularGenre = animes
+                .SelectMany(a => a.Genres)
+                .GroupBy(g => g.Id)
+                .Select(g => new
+                {
+                    Genre = genres.First(genre => genre.Id == g.Key).Name,
+                    Count = g.Count()
+                })
+                .OrderByDescending(gr => gr.Count)
+                .FirstOrDefault();
+            ViewBag.MostPopularGenre = mostPopularGenre;
 
             // Nejoblíbenější žánry
             var genreCounts = animes
@@ -50,14 +90,16 @@ namespace C2.Controllers
             }
             ViewBag.TopGenres = topGenres;
 
-            // Předání dalších statistik do ViewBag
+            // Předání statistik do ViewBag
             ViewBag.TotalAnime = totalAnime;
             ViewBag.TotalEpisodes = totalEpisodes;
             ViewBag.TotalDays = days;
             ViewBag.TotalHours = hours;
             ViewBag.TotalMinutes = minutes;
+            ViewBag.AverageRating = averageRating;
 
             return View();
         }
+
     }
 }

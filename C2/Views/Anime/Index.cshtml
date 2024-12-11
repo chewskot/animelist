@@ -43,14 +43,14 @@
             <input type="number" step="1" name="MaxRating" id="MaxRating" value="@filter.MaxRating" class="form-control" />
         </div>
 
-        <!-- Žánry s přidáváním a odebíráním -->
-        <div>
+        <!-- Upravený výběr žánrů -->
+        <div class="form-group">
             <label>Genres</label>
             <div class="d-flex">
                 <select id="availableGenres" class="form-control" multiple style="height: 150px;">
                     @foreach (var genre in genres)
                     {
-                        if (!Model.Any(a => a.Genres.Any(g => g.Id == genre.Id)))
+                        if (!filter.SelectedGenreIds.Contains(genre.Id))
                         {
                             <option value="@genre.Id">@genre.Name</option>
                         }
@@ -60,12 +60,12 @@
                     <button type="button" class="btn btn-primary mb-2" onclick="addGenre()">Add &gt;&gt;</button>
                     <button type="button" class="btn btn-danger" onclick="removeGenre()">Remove &lt;&lt;</button>
                 </div>
-                <select id="selectedGenres" name="GenreIds" class="form-control" multiple style="height: 150px;">
+                <select id="selectedGenres" name="SelectedGenreIds" class="form-control" multiple style="height: 150px;">
                     @foreach (var genre in genres)
                     {
-                        if (Model.Any(a => a.Genres.Any(g => g.Id == genre.Id)))
+                        if (filter.SelectedGenreIds.Contains(genre.Id))
                         {
-                            <option value="@genre.Id" selected>@genre.Name</option>
+                            <option value="@genre.Id">@genre.Name</option>
                         }
                     }
                 </select>
@@ -73,7 +73,7 @@
         </div>
 
         <button type="submit" class="btn btn-success">Apply Filters</button>
-        <a asp-action="Index" class="btn btn-secondary">Zrušit filtr</a> <!-- Tlačítko pro zrušení filtru -->
+        <a asp-action="Index" class="btn btn-secondary">Reset Filters</a> <!-- Tlačítko pro zrušení filtru -->
     </form>
 </div>
 

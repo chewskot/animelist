@@ -49,41 +49,49 @@ namespace C2.Controllers
 
         // Filtr anime podle zadaných kritérií
         [HttpGet]
-        public IActionResult Filter(AnimeFilterModel filter)
-        {
-            var query = _context.Animes.FindAll().AsQueryable();
+public IActionResult Filter(AnimeFilterModel filter)
+{
+    var query = _context.Animes.FindAll().AsQueryable();
 
-            // Aplikace filtračních kritérií
-            if (!string.IsNullOrEmpty(filter.Title))
-            {
-                query = query.Where(a => a.Title.ToLower().Contains(filter.Title.ToLower())); // Case-insensitive filtrování názvu
-            }
-            if (filter.MinEpisodeCount.HasValue)
-            {
-                query = query.Where(a => a.EpisodeCount >= filter.MinEpisodeCount.Value);
-            }
-            if (filter.MaxEpisodeCount.HasValue)
-            {
-                query = query.Where(a => a.EpisodeCount <= filter.MaxEpisodeCount.Value);
-            }
-            if (filter.MinRating.HasValue)
-            {
-                query = query.Where(a => a.Rating >= filter.MinRating.Value);
-            }
-            if (filter.MaxRating.HasValue)
-            {
-                query = query.Where(a => a.Rating <= filter.MaxRating.Value);
-            }
-            if (filter.SelectedGenreIds != null && filter.SelectedGenreIds.Any())
-            {
-                query = query.Where(a => a.Genres.Any(g => filter.SelectedGenreIds.Contains(g.Id)));
-            }
+    // Filtrování podle názvu (case-insensitive)
+    if (!string.IsNullOrEmpty(filter.Title))
+    {
+        query = query.Where(a => a.Title.ToLower().Contains(filter.Title.ToLower()));
+    }
 
-            var filteredAnimes = query.ToList();
-            ViewBag.Genres = _context.Genres.FindAll().ToList();
-            ViewBag.Filter = filter; // Uložíme hodnoty filtru do ViewBag pro zobrazení ve formuláři
-            return View("Index", filteredAnimes);
-        }
+    // Filtrování podle počtu epizod
+    if (filter.MinEpisodeCount.HasValue)
+    {
+        query = query.Where(a => a.EpisodeCount >= filter.MinEpisodeCount.Value);
+    }
+    if (filter.MaxEpisodeCount.HasValue)
+    {
+        query = query.Where(a => a.EpisodeCount <= filter.MaxEpisodeCount.Value);
+    }
+
+    // Filtrování podle hodnocení
+    if (filter.MinRating.HasValue)
+    {
+        query = query.Where(a => a.Rating >= filter.MinRating.Value);
+    }
+    if (filter.MaxRating.HasValue)
+    {
+        query = query.Where(a => a.Rating <= filter.MaxRating.Value);
+    }
+
+    // Filtrování podle vybraných žánrů
+    if (filter.SelectedGenreIds != null && filter.SelectedGenreIds.Any())
+    {
+        query = query.Where(a => a.Genres.Any(g => filter.SelectedGenreIds.Contains(g.Id)));
+    }
+
+    var filteredAnimes = query.ToList();
+
+    ViewBag.Genres = _context.Genres.FindAll().ToList();
+    ViewBag.Filter = filter; // Uložíme hodnoty filtru do ViewBag pro zobrazení ve formuláři
+
+    return View("Index", filteredAnimes);
+}
 
         // Formulář pro vytvoření nového anime
         public IActionResult Create()
@@ -147,21 +155,47 @@ namespace C2.Controllers
                     return NotFound();
                 }
 
+                // Aktualizace základních informací o anime
                 existingAnime.Title = anime.Title;
                 existingAnime.ReleaseDate = anime.ReleaseDate;
                 existingAnime.Rating = anime.Rating;
                 existingAnime.EpisodeCount = anime.EpisodeCount;
 
-                // Najdeme nové žánry a přidáme je, pokud ještě neexistují
-                var selectedGenres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
-                foreach (var genre in selectedGenres)
+                // Reset žánrů - nahradíme celý seznam žánrů na základě vybraných ID
+                existingAnime.Genres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
+
+                // Správa epizod - přidání nebo odebrání epizod podle změny počtu
+                var currentEpisodes = _context.Episodes.Find(e => e.AnimeId == existingAnime.Id).OrderBy(e => e.Number).ToList();
+                int currentEpisodeCount = currentEpisodes.Count;
+
+                if (anime.EpisodeCount > currentEpisodeCount)
                 {
-                    if (!existingAnime.Genres.Any(g => g.Id == genre.Id))
+                    // Přidat nové epizody
+                    for (int i = currentEpisodeCount + 1; i <= anime.EpisodeCount; i++)
                     {
-                        existingAnime.Genres.Add(genre);
+                        var episode = new Episode
+                        {
+                            Number = i,
+                            Title = $"Epizoda {i}",
+                            ReleaseDate = existingAnime.ReleaseDate.AddDays(7 * (i - 1)),
+                            Duration = 23,
+                            AnimeId = existingAnime.Id
+                        };
+
+                        _context.Episodes.Insert(episode);
+                    }
+                }
+                else if (anime.EpisodeCount < currentEpisodeCount)
+                {
+                    // Odebrat přebytečné epizody
+                    var episodesToRemove = currentEpisodes.Skip(anime.EpisodeCount).ToList();
+                    foreach (var episode in episodesToRemove)
+                    {
+                        _context.Episodes.Delete(episode.Id);
                     }
                 }
 
+                // Uložit změny anime
                 _context.Animes.Update(existingAnime);
                 return RedirectToAction(nameof(Index));
             }

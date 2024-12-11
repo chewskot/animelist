@@ -22,11 +22,37 @@
             <p>@ViewBag.TotalDays dnů, @ViewBag.TotalHours hodin, @ViewBag.TotalMinutes minut</p>
         </div>
         <div class="col-md-6">
+            <h4>Průměrné hodnocení všech anime</h4>
+            <p>@ViewBag.AverageRating.ToString("0.00")</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Nejnovější přidané anime</h4>
+            <p>@ViewBag.NewestAnimeAdded?.Title (ID: @ViewBag.NewestAnimeAdded?.Id)</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Nejlépe hodnocené anime</h4>
+            <p>@ViewBag.TopRatedAnime?.Title (@ViewBag.TopRatedAnime?.Rating/10)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Nejlépe hodnocený žánr</h4>
+            <p>@ViewBag.TopRatedGenre?.Genre (@ViewBag.TopRatedGenre?.AverageRating.ToString("0.00"))</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Žánr s nejvíce anime</h4>
+            <p>@ViewBag.MostPopularGenre?.Genre (@ViewBag.MostPopularGenre?.Count anime)</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <h4>Nejoblíbenější žánry</h4>
             <ul>
                 @foreach (var genre in topGenres)
                 {
-                    <li>@genre.Genre: @genre.Count</li>
+                        <li>@genre.Genre: @genre.Count</li>
                 }
             </ul>
         </div>
