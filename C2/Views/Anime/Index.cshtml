@@ -1,10 +1,106 @@
 ﻿@model IEnumerable<C2.Models.Anime>
+@{
+    var genres = ViewBag.Genres as List<C2.Models.Genre> ?? new List<C2.Models.Genre>();
+    var filter = ViewBag.Filter as C2.Models.AnimeFilterModel ?? new C2.Models.AnimeFilterModel();
+}
 
 <h2>Anime List</h2>
 
 <!-- Tlačítko pro přidání nového anime -->
 <a asp-action="Create" class="btn btn-success mb-3">Add New Anime</a>
 
+<!-- Tlačítko pro zobrazení/skrytí filtračního formuláře -->
+<button id="toggleFilter" class="btn btn-primary mb-3">Filter</button>
+
+<!-- Filtrační formulář, který je na začátku skrytý -->
+<div id="filterForm" style="display: none; margin-bottom: 20px;">
+    <form asp-action="Filter" method="get">
+        <div class="form-group">
+            <label for="Title">Název:</label>
+            <input type="text" name="Title" id="Title" value="@filter.Title" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="MinEpisodeCount">Minimální počet epizod:</label>
+            <input type="number" name="MinEpisodeCount" id="MinEpisodeCount" value="@filter.MinEpisodeCount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="MaxEpisodeCount">Maximální počet epizod:</label>
+            <input type="number" name="MaxEpisodeCount" id="MaxEpisodeCount" value="@filter.MaxEpisodeCount" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="MinRating">Minimální hodnocení:</label>
+            <input type="number" step="1" name="MinRating" id="MinRating" value="@filter.MinRating" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="MaxRating">Maximální hodnocení:</label>
+            <input type="number" step="1" name="MaxRating" id="MaxRating" value="@filter.MaxRating" class="form-control" />
+        </div>
+
+        <!-- Žánry s přidáváním a odebíráním -->
+        <div class="form-group">
+            <label>Genres</label>
+            <div class="d-flex">
+                <select id="availableGenres" class="form-control" multiple style="height: 150px;">
+                    @foreach (var genre in genres)
+                    {
+                        if (!filter.SelectedGenreIds.Contains(genre.Id))
+                        {
+                            <option value="@genre.Id">@genre.Name</option>
+                        }
+                    }
+                </select>
+                <div class="d-flex flex-column mx-3">
+                    <button type="button" class="btn btn-primary mb-2" onclick="addGenre()">Add &gt;&gt;</button>
+                    <button type="button" class="btn btn-danger" onclick="removeGenre()">Remove &lt;&lt;</button>
+                </div>
+                <select id="selectedGenres" name="SelectedGenreIds" class="form-control" multiple style="height: 150px;">
+                    @foreach (var genre in genres)
+                    {
+                        if (filter.SelectedGenreIds.Contains(genre.Id))
+                        {
+                            <option value="@genre.Id" selected>@genre.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Apply Filters</button>
+        <a asp-action="Index" class="btn btn-secondary">Zrušit filtr</a> <!-- Tlačítko pro zrušení filtru -->
+    </form>
+</div>
+
+<!-- Skript pro zobrazení a skrytí filtračního formuláře -->
+<script>
+    document.getElementById("toggleFilter").addEventListener("click", function () {
+        var filterForm = document.getElementById("filterForm");
+        if (filterForm.style.display === "none") {
+            filterForm.style.display = "block";
+        } else {
+            filterForm.style.display = "none";
+        }
+    });
+
+    function addGenre() {
+        var availableGenres = document.getElementById("availableGenres");
+        var selectedGenres = document.getElementById("selectedGenres");
+
+        Array.from(availableGenres.selectedOptions).forEach(option => {
+            selectedGenres.appendChild(option);
+        });
+    }
+
+    function removeGenre() {
+        var availableGenres = document.getElementById("availableGenres");
+        var selectedGenres = document.getElementById("selectedGenres");
+
+        Array.from(selectedGenres.selectedOptions).forEach(option => {
+            availableGenres.appendChild(option);
+        });
+    }
+</script>
+
+<!-- Seznam anime -->
 <table class="table">
     <thead>
         <tr>

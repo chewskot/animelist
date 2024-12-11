@@ -3,7 +3,6 @@
     var genres = ViewBag.Genres as List<C2.Models.Genre> ?? new List<C2.Models.Genre>();
 }
 
-
 <h2>Create New Anime</h2>
 
 <form asp-action="Create" method="post">
@@ -17,7 +16,7 @@
 
     <div>
         <label>Release Date</label>
-        <input asp-for="ReleaseDate" type="date" class="form-control" />
+        <input asp-for="ReleaseDate" type="date" class="form-control" id="releaseDate" />
         <span asp-validation-for="ReleaseDate" class="text-danger"></span>
     </div>
 
@@ -41,7 +40,7 @@
                 {
                     if (!Model.GenreIds.Contains(genre.Id))
                     {
-                        <option value="@genre.Id">@genre.Name</option>
+                                <option value="@genre.Id">@genre.Name</option>
                     }
                 }
             </select>
@@ -54,7 +53,7 @@
                 {
                     if (Model.GenreIds.Contains(genre.Id))
                     {
-                        <option value="@genre.Id">@genre.Name</option>
+                                <option value="@genre.Id">@genre.Name</option>
                     }
                 }
             </select>
@@ -66,23 +65,29 @@
 </form>
 
 @section Scripts {
-    <script>
-        function addGenre() {
-            var availableGenres = document.getElementById("availableGenres");
-            var selectedGenres = document.getElementById("selectedGenres");
-
-            Array.from(availableGenres.selectedOptions).forEach(option => {
-                selectedGenres.appendChild(option);
+        <script>
+            // Nastaví aktuální datum pro pole ReleaseDate
+            document.addEventListener("DOMContentLoaded", function() {
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementById("releaseDate").value = today;
             });
-        }
 
-        function removeGenre() {
-            var availableGenres = document.getElementById("availableGenres");
-            var selectedGenres = document.getElementById("selectedGenres");
+            function addGenre() {
+                var availableGenres = document.getElementById("availableGenres");
+                var selectedGenres = document.getElementById("selectedGenres");
 
-            Array.from(selectedGenres.selectedOptions).forEach(option => {
-                availableGenres.appendChild(option);
-            });
-        }
-    </script>
+                Array.from(availableGenres.selectedOptions).forEach(option => {
+                    selectedGenres.appendChild(option);
+                });
+            }
+
+            function removeGenre() {
+                var availableGenres = document.getElementById("availableGenres");
+                var selectedGenres = document.getElementById("selectedGenres");
+
+                Array.from(selectedGenres.selectedOptions).forEach(option => {
+                    availableGenres.appendChild(option);
+                });
+            }
+        </script>
 }

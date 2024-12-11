@@ -19,21 +19,18 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <!-- Přidán odkaz na Anime List -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Anime" asp-action="Index">Anime List</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Genre" asp-action="Index">Genres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Statistics" asp-action="Index">Statistics</a> <!-- Aktualizovaný odkaz na nový kontroler -->
+                        </li>
+
                     </ul>
                 </div>
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Anime" asp-action="Index">Anime List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Genre" asp-action="Index">Genres</a>
-                    </li>
-                </ul>
-
             </div>
         </nav>
     </header>

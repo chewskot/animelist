@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Statistics";
+    var topGenres = ViewBag.TopGenres as List<dynamic> ?? new List<dynamic>(); // Zajistíme, že topGenres bude vždy ne-null
+}
+
+<h2>Statistics</h2>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Celkový počet anime</h4>
+            <p>@ViewBag.TotalAnime</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Celkový počet epizod</h4>
+            <p>@ViewBag.TotalEpisodes</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Celkový čas strávený sledováním</h4>
+            <p>@ViewBag.TotalDays dnů, @ViewBag.TotalHours hodin, @ViewBag.TotalMinutes minut</p>
+        </div>
+        <div class="col-md-6">
+            <h4>Nejoblíbenější žánry</h4>
+            <ul>
+                @foreach (var genre in topGenres)
+                {
+                    <li>@genre.Genre: @genre.Count</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

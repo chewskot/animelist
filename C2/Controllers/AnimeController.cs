@@ -1,7 +1,9 @@
 ﻿using C2.Data;
 using C2.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace C2.Controllers
 {
@@ -18,6 +20,7 @@ namespace C2.Controllers
         public IActionResult Index()
         {
             var animes = _context.Animes.FindAll().ToList();
+            ViewBag.Genres = _context.Genres.FindAll().ToList(); // Načteme seznam žánrů pro filtrační formulář
             return View(animes);
         }
 
@@ -32,6 +35,44 @@ namespace C2.Controllers
             return View(anime);
         }
 
+        // Filtr anime podle zadaných kritérií
+        [HttpGet]
+        public IActionResult Filter(AnimeFilterModel filter)
+        {
+            var query = _context.Animes.FindAll().AsQueryable();
+
+            // Aplikace filtračních kritérií
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(a => a.Title.ToLower().Contains(filter.Title.ToLower())); // Case-insensitive filtrování názvu
+            }
+            if (filter.MinEpisodeCount.HasValue)
+            {
+                query = query.Where(a => a.EpisodeCount >= filter.MinEpisodeCount.Value);
+            }
+            if (filter.MaxEpisodeCount.HasValue)
+            {
+                query = query.Where(a => a.EpisodeCount <= filter.MaxEpisodeCount.Value);
+            }
+            if (filter.MinRating.HasValue)
+            {
+                query = query.Where(a => a.Rating >= filter.MinRating.Value);
+            }
+            if (filter.MaxRating.HasValue)
+            {
+                query = query.Where(a => a.Rating <= filter.MaxRating.Value);
+            }
+            if (filter.SelectedGenreIds != null && filter.SelectedGenreIds.Any())
+            {
+                query = query.Where(a => a.Genres.Any(g => filter.SelectedGenreIds.Contains(g.Id)));
+            }
+
+            var filteredAnimes = query.ToList();
+            ViewBag.Genres = _context.Genres.FindAll().ToList();
+            ViewBag.Filter = filter; // Uložíme hodnoty filtru do ViewBag pro zobrazení ve formuláři
+            return View("Index", filteredAnimes);
+        }
+
         // Formulář pro vytvoření nového anime
         public IActionResult Create()
         {
@@ -39,26 +80,20 @@ namespace C2.Controllers
             return View(new Anime()); // Předáváme nový objekt bez předchozích hodnot
         }
 
-
-
         [HttpPost]
         public IActionResult Create(Anime anime)
         {
             if (ModelState.IsValid)
             {
-                // Najdeme a přiřadíme žánry na základě zvolených `GenreIds`
                 anime.Genres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
-
-                // Uložíme anime, abychom získali jeho ID
                 _context.Animes.Insert(anime);
 
-                // Vygenerujeme epizody
                 DateTime episodeReleaseDate = anime.ReleaseDate;
                 for (int i = 1; i <= anime.EpisodeCount; i++)
                 {
                     var episode = new Episode
                     {
-                        Number = i, // Přiřadíme číslo epizody
+                        Number = i,
                         Title = $"Epizoda {i}",
                         ReleaseDate = episodeReleaseDate,
                         Duration = 23,
@@ -66,17 +101,15 @@ namespace C2.Controllers
                     };
 
                     _context.Episodes.Insert(episode);
-                    episodeReleaseDate = episodeReleaseDate.AddDays(7); // Posuneme datum vydání o týden
+                    episodeReleaseDate = episodeReleaseDate.AddDays(7);
                 }
 
                 return RedirectToAction(nameof(Index));
             }
 
-            // Pokud ModelState není platný, načteme seznam žánrů znovu pro view
             ViewBag.Genres = _context.Genres.FindAll().ToList();
             return View(anime);
         }
-
 
         public IActionResult Edit(int id)
         {
@@ -86,21 +119,10 @@ namespace C2.Controllers
                 return NotFound();
             }
 
-            // Načteme všechny dostupné žánry a nastavíme GenreIds podle vybraných žánrů
             ViewBag.Genres = _context.Genres.FindAll().ToList();
             anime.GenreIds = anime.Genres.Select(g => g.Id).ToList();
-
-            // Diagnostický výstup pro kontrolu obsahu
-            Console.WriteLine("Editing Anime ID: " + anime.Id);
-            Console.WriteLine("Current Genres:");
-            foreach (var genre in anime.Genres)
-            {
-                Console.WriteLine(" - " + genre.Name);
-            }
-
             return View(anime);
         }
-
 
         [HttpPost]
         public IActionResult Edit(int id, Anime anime)
@@ -113,27 +135,23 @@ namespace C2.Controllers
                     return NotFound();
                 }
 
-                // Aktualizace základních údajů o anime
                 existingAnime.Title = anime.Title;
                 existingAnime.ReleaseDate = anime.ReleaseDate;
                 existingAnime.Rating = anime.Rating;
                 existingAnime.EpisodeCount = anime.EpisodeCount;
 
-                // Zachováme stávající žánry, takže načteme pouze změny, pokud byly vybrány jiné žánry
                 if (anime.GenreIds != null && anime.GenreIds.Any())
                 {
                     var selectedGenres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
                     existingAnime.Genres = selectedGenres;
                 }
 
-                // Načteme aktuální seznam epizod
                 var currentEpisodes = _context.Episodes.Find(e => e.AnimeId == existingAnime.Id).OrderBy(e => e.Number).ToList();
                 int currentEpisodeCount = currentEpisodes.Count;
                 DateTime episodeReleaseDate = existingAnime.ReleaseDate;
 
                 if (anime.EpisodeCount > currentEpisodeCount)
                 {
-                    // Přidáme pouze nové epizody
                     for (int i = currentEpisodeCount + 1; i <= anime.EpisodeCount; i++)
                     {
                         var episode = new Episode
@@ -150,7 +168,6 @@ namespace C2.Controllers
                 }
                 else if (anime.EpisodeCount < currentEpisodeCount)
                 {
-                    // Odstraníme pouze nadbytečné epizody
                     var episodesToRemove = currentEpisodes.Skip(anime.EpisodeCount).ToList();
                     foreach (var episode in episodesToRemove)
                     {
@@ -158,10 +175,7 @@ namespace C2.Controllers
                     }
                 }
 
-                // Aktualizujeme seznam epizod v objektu Anime
                 existingAnime.Episodes = _context.Episodes.Find(e => e.AnimeId == existingAnime.Id).OrderBy(e => e.Number).ToList();
-
-                // Uložíme změny do databáze
                 _context.Animes.Update(existingAnime);
                 return RedirectToAction(nameof(Index));
             }
@@ -169,7 +183,6 @@ namespace C2.Controllers
             ViewBag.Genres = _context.Genres.FindAll().ToList();
             return View(anime);
         }
-
 
         // Potvrzení smazání
         public IActionResult Delete(int id)
@@ -188,6 +201,7 @@ namespace C2.Controllers
             _context.Animes.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+
         public IActionResult EditEpisodes(int id)
         {
             var anime = _context.Animes.FindById(id);
@@ -197,8 +211,6 @@ namespace C2.Controllers
             }
 
             var episodes = _context.Episodes.Find(e => e.AnimeId == id).ToList();
-            Console.WriteLine("Počet načtených epizod: " + episodes.Count);
-
             ViewBag.AnimeTitle = anime.Title;
             return View(episodes);
         }
@@ -219,18 +231,11 @@ namespace C2.Controllers
 
                         _context.Episodes.Update(existingEpisode);
                     }
-                    else
-                    {
-                        Console.WriteLine($"Episode with ID {episode.Id} not found.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Encountered a null episode in the list.");
                 }
             }
             return RedirectToAction("Index");
         }
+
 
     }
 }
