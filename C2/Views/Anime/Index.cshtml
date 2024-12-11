@@ -9,6 +9,13 @@
 <!-- Tlačítko pro přidání nového anime -->
 <a asp-action="Create" class="btn btn-success mb-3">Add New Anime</a>
 
+<!-- Tlačítko pro smazání všech anime -->
+<form asp-action="DeleteAll" method="post" class="d-inline">
+    <button type="submit" class="btn btn-danger mb-3" onclick="return confirm('Are you sure you want to delete all anime and their episodes?');">
+        Delete All Anime
+    </button>
+</form>
+
 <!-- Tlačítko pro zobrazení/skrytí filtračního formuláře -->
 <button id="toggleFilter" class="btn btn-primary mb-3">Filter</button>
 
@@ -37,13 +44,13 @@
         </div>
 
         <!-- Žánry s přidáváním a odebíráním -->
-        <div class="form-group">
+        <div>
             <label>Genres</label>
             <div class="d-flex">
                 <select id="availableGenres" class="form-control" multiple style="height: 150px;">
                     @foreach (var genre in genres)
                     {
-                        if (!filter.SelectedGenreIds.Contains(genre.Id))
+                        if (!Model.Any(a => a.Genres.Any(g => g.Id == genre.Id)))
                         {
                             <option value="@genre.Id">@genre.Name</option>
                         }
@@ -53,10 +60,10 @@
                     <button type="button" class="btn btn-primary mb-2" onclick="addGenre()">Add &gt;&gt;</button>
                     <button type="button" class="btn btn-danger" onclick="removeGenre()">Remove &lt;&lt;</button>
                 </div>
-                <select id="selectedGenres" name="SelectedGenreIds" class="form-control" multiple style="height: 150px;">
+                <select id="selectedGenres" name="GenreIds" class="form-control" multiple style="height: 150px;">
                     @foreach (var genre in genres)
                     {
-                        if (filter.SelectedGenreIds.Contains(genre.Id))
+                        if (Model.Any(a => a.Genres.Any(g => g.Id == genre.Id)))
                         {
                             <option value="@genre.Id" selected>@genre.Name</option>
                         }

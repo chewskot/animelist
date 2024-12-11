@@ -19,7 +19,7 @@ namespace C2.Controllers
         public IActionResult Index()
         {
             var animes = _context.Animes.FindAll().ToList();
-            var episodes = animes.SelectMany(a => a.Episodes).ToList();
+            var episodes = _context.Episodes.FindAll().ToList(); // Explicitně načteme všechny epizody
 
             // Počet anime
             int totalAnime = animes.Count;

@@ -34,6 +34,18 @@ namespace C2.Controllers
             }
             return View(anime);
         }
+        [HttpPost]
+        public IActionResult DeleteAll()
+        {
+            // Smažeme všechny záznamy z kolekce Anime
+            _context.Animes.DeleteMany(_ => true);
+
+            // Smažeme i všechny související epizody
+            _context.Episodes.DeleteMany(_ => true);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // Filtr anime podle zadaných kritérií
         [HttpGet]
@@ -140,42 +152,16 @@ namespace C2.Controllers
                 existingAnime.Rating = anime.Rating;
                 existingAnime.EpisodeCount = anime.EpisodeCount;
 
-                if (anime.GenreIds != null && anime.GenreIds.Any())
+                // Najdeme nové žánry a přidáme je, pokud ještě neexistují
+                var selectedGenres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
+                foreach (var genre in selectedGenres)
                 {
-                    var selectedGenres = _context.Genres.Find(g => anime.GenreIds.Contains(g.Id)).ToList();
-                    existingAnime.Genres = selectedGenres;
-                }
-
-                var currentEpisodes = _context.Episodes.Find(e => e.AnimeId == existingAnime.Id).OrderBy(e => e.Number).ToList();
-                int currentEpisodeCount = currentEpisodes.Count;
-                DateTime episodeReleaseDate = existingAnime.ReleaseDate;
-
-                if (anime.EpisodeCount > currentEpisodeCount)
-                {
-                    for (int i = currentEpisodeCount + 1; i <= anime.EpisodeCount; i++)
+                    if (!existingAnime.Genres.Any(g => g.Id == genre.Id))
                     {
-                        var episode = new Episode
-                        {
-                            Number = i,
-                            Title = $"Epizoda {i}",
-                            ReleaseDate = episodeReleaseDate.AddDays(7 * (i - 1)),
-                            Duration = 23,
-                            AnimeId = existingAnime.Id
-                        };
-
-                        _context.Episodes.Insert(episode);
-                    }
-                }
-                else if (anime.EpisodeCount < currentEpisodeCount)
-                {
-                    var episodesToRemove = currentEpisodes.Skip(anime.EpisodeCount).ToList();
-                    foreach (var episode in episodesToRemove)
-                    {
-                        _context.Episodes.Delete(episode.Id);
+                        existingAnime.Genres.Add(genre);
                     }
                 }
 
-                existingAnime.Episodes = _context.Episodes.Find(e => e.AnimeId == existingAnime.Id).OrderBy(e => e.Number).ToList();
                 _context.Animes.Update(existingAnime);
                 return RedirectToAction(nameof(Index));
             }
