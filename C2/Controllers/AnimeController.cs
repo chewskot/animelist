@@ -49,49 +49,72 @@ namespace C2.Controllers
 
         // Filtr anime podle zadaných kritérií
         [HttpGet]
-public IActionResult Filter(AnimeFilterModel filter)
-{
-    var query = _context.Animes.FindAll().AsQueryable();
+        public IActionResult Filter(AnimeFilterModel filter)
+        {
+            // Načti aktuální filtry z ViewBag.Filter, pokud existují
+            var currentFilter = ViewBag.Filter as AnimeFilterModel ?? new AnimeFilterModel();
 
-    // Filtrování podle názvu (case-insensitive)
-    if (!string.IsNullOrEmpty(filter.Title))
-    {
-        query = query.Where(a => a.Title.ToLower().Contains(filter.Title.ToLower()));
-    }
+            // Sloučení nového filtru s existujícím
+            filter.Title = filter.Title ?? currentFilter.Title;
+            filter.MinEpisodeCount ??= currentFilter.MinEpisodeCount;
+            filter.MaxEpisodeCount ??= currentFilter.MaxEpisodeCount;
+            filter.MinRating ??= currentFilter.MinRating;
+            filter.MaxRating ??= currentFilter.MaxRating;
 
-    // Filtrování podle počtu epizod
-    if (filter.MinEpisodeCount.HasValue)
-    {
-        query = query.Where(a => a.EpisodeCount >= filter.MinEpisodeCount.Value);
-    }
-    if (filter.MaxEpisodeCount.HasValue)
-    {
-        query = query.Where(a => a.EpisodeCount <= filter.MaxEpisodeCount.Value);
-    }
+            if (filter.SelectedGenreIds == null || !filter.SelectedGenreIds.Any())
+            {
+                filter.SelectedGenreIds = currentFilter.SelectedGenreIds ?? new List<int>();
+            }
+            else
+            {
+                // Přidání nově vybraných žánrů ke stávajícím
+                filter.SelectedGenreIds = filter.SelectedGenreIds.Union(currentFilter.SelectedGenreIds ?? new List<int>()).ToList();
+            }
 
-    // Filtrování podle hodnocení
-    if (filter.MinRating.HasValue)
-    {
-        query = query.Where(a => a.Rating >= filter.MinRating.Value);
-    }
-    if (filter.MaxRating.HasValue)
-    {
-        query = query.Where(a => a.Rating <= filter.MaxRating.Value);
-    }
+            // Uložíme hodnoty aktuálního filtru zpět do ViewBag
+            ViewBag.Filter = filter;
 
-    // Filtrování podle vybraných žánrů
-    if (filter.SelectedGenreIds != null && filter.SelectedGenreIds.Any())
-    {
-        query = query.Where(a => a.Genres.Any(g => filter.SelectedGenreIds.Contains(g.Id)));
-    }
+            // Použití filtrů
+            var query = _context.Animes.FindAll().AsQueryable();
 
-    var filteredAnimes = query.ToList();
+            // Filtrování podle názvu (case-insensitive)
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(a => a.Title.ToLower().Contains(filter.Title.ToLower()));
+            }
 
-    ViewBag.Genres = _context.Genres.FindAll().ToList();
-    ViewBag.Filter = filter; // Uložíme hodnoty filtru do ViewBag pro zobrazení ve formuláři
+            // Filtrování podle počtu epizod
+            if (filter.MinEpisodeCount.HasValue)
+            {
+                query = query.Where(a => a.EpisodeCount >= filter.MinEpisodeCount.Value);
+            }
+            if (filter.MaxEpisodeCount.HasValue)
+            {
+                query = query.Where(a => a.EpisodeCount <= filter.MaxEpisodeCount.Value);
+            }
 
-    return View("Index", filteredAnimes);
-}
+            // Filtrování podle hodnocení
+            if (filter.MinRating.HasValue)
+            {
+                query = query.Where(a => a.Rating >= filter.MinRating.Value);
+            }
+            if (filter.MaxRating.HasValue)
+            {
+                query = query.Where(a => a.Rating <= filter.MaxRating.Value);
+            }
+
+            // Filtrování podle vybraných žánrů
+            if (filter.SelectedGenreIds != null && filter.SelectedGenreIds.Any())
+            {
+                query = query.Where(a => a.Genres.Any(g => filter.SelectedGenreIds.Contains(g.Id)));
+            }
+
+            var filteredAnimes = query.ToList();
+
+            ViewBag.Genres = _context.Genres.FindAll().ToList();
+
+            return View("Index", filteredAnimes);
+        }
 
         // Formulář pro vytvoření nového anime
         public IActionResult Create()
